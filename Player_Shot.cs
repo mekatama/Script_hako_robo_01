@@ -13,7 +13,7 @@ public class Player_Shot : MonoBehaviour{
 	}
 
 	void Update(){
-		Shot();
+		//Shot();
 	}
 
 	void Shot(){
