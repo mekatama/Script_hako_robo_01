@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour{
-	public float speed = 3.0f;	//移動speed
+	public float speed = 0.0f;	//移動speed
 	GameObject player;			//検索したオブジェクト入れる用
 
 	void Start(){
 		player = GameObject.FindWithTag ("Player");	//Playerタグのオブジェクトを探す
 		//pって仮の変数にPlayerコンポーネントを入れる
 		Player p = player.GetComponent<Player>();
-		//移動方向決定
+		//生成時に移動方向決定
 		if(p.isRight){
 			speed = 1 * speed;
-		}else{
+		}
+		if(p.isLeft){
 			speed = -1 * speed;
 		}
 	}
