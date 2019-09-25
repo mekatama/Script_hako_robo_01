@@ -5,11 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour{
 	public float speed = 3.0f;	//移動speed
 	public bool isRight;		//right flag
-	public bool isleft;			//left flag
+	public bool isLeft;			//left flag
 
 	void Start(){
 		isRight = true;		//初期化
-		isleft = false;		//初期化
+		isLeft = false;		//初期化
 	}
 
 	void Update(){
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour{
 		Vector3 worldAngle = myTransform.eulerAngles;
 
 		//右移動
-		if(Input.GetKey("right") && isleft == false){
+		if(Input.GetKey("right") && isLeft == false){
 			isRight = true;
 			Debug.Log("right");
 			worldAngle.y = 0.0f; // ワールド座標を基準に、y軸を軸にした回転を0度に変更
@@ -30,12 +30,12 @@ public class Player : MonoBehaviour{
 
 		//左移動
 		if(Input.GetKey("left") && isRight == false){
-			isleft = true;
+			isLeft = true;
 			Debug.Log("left");
 			worldAngle.y = 180.0f; // ワールド座標を基準に、y軸を軸にした回転を180度に変更
 			transform.position += transform.right * speed * Time.deltaTime;
 		}else{
-			isleft = false;
+			isLeft = false;
 		}
 
 		//回転角度確定
