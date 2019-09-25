@@ -13,14 +13,12 @@ public class Player_Shot : MonoBehaviour{
 	}
 
 	void Update(){
-		//Shot();
+		Shot();
 	}
 
 	void Shot(){
-		//gcって仮の変数にGameControllerのコンポーネントを入れる
-//		GameController gc = gameController.GetComponent<GameController>();
 		//連射速度の判定
-		timeOut = 0.4f;
+		timeOut = 0.7f;
 		//弾の自動連射
 		timeElapsed += Time.deltaTime;
 		if(timeElapsed >= timeOut) {
