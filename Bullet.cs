@@ -23,4 +23,11 @@ public class Bullet : MonoBehaviour{
 		//移動
 			transform.position += transform.right * speed * Time.deltaTime;
 	}
+
+	//他のオブジェクトとの当たり判定
+	void OnTriggerEnter( Collider other) {
+		if(other.tag == "Wall"){
+			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
+		}
+	}
 }
