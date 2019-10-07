@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy1 : MonoBehaviour{
+	GameObject gameController;			//検索したオブジェクト入れる用
 	public int enemyHp;		//EnemyのHP
+	public int enemyScore;	//enemyの点数
 	private bool isDeth;	//死亡flag
 
 	void Start(){
+		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
 		isDeth = false;		//初期化
 	}
 
@@ -23,7 +26,10 @@ public class Enemy1 : MonoBehaviour{
 			//死亡判定
 			if(enemyHp == 0){
 				if(isDeth == false){
-					Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
+					//gcって仮の変数にGameControllerのコンポーネントを入れる
+					GameController gc = gameController.GetComponent<GameController>();
+					gc.totalScore += enemyScore;	//スコア加算
+					Destroy(gameObject);			//このGameObjectを削除
 					isDeth = true;
 				}
 			}
