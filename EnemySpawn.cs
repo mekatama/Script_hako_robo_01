@@ -34,13 +34,15 @@ public class EnemySpawn : MonoBehaviour{
 				x_pos = 4.0f;
 				y_pos = 2.0f;
 				z_pos = -2.0f;
-				Debug.Log("右");
+				transform.rotation = Quaternion.Euler(0,180.0f,0);	//spawn pointを回転
+//				Debug.Log("右");
 				break;
 			case 1:
 				x_pos = -4.0f;
 				y_pos = 2.0f;
 				z_pos = -2.0f;
-				Debug.Log("左");
+				transform.rotation = Quaternion.Euler(0,0.0f,0);	//spawn pointを回転
+//				Debug.Log("左");
 				break;
 		}
 
