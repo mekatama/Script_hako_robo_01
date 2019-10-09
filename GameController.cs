@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour{
 	public float timeOut;				//noShot間隔の時間
 	public bool isShot;					//shotflag
 	public int totalScore;				//score
+	public int attackPower;				//攻撃力
 
 	void Start(){
 		isShot = true;	//初期化
