@@ -18,7 +18,9 @@ public class Enemy1 : MonoBehaviour{
 		if(other.tag == "Bullet"){
 			//ダメージ処理
 			if(enemyHp > 0){
-				enemyHp = enemyHp - 1;	//攻撃力をHPから引く
+				//gcって仮の変数にGameControllerのコンポーネントを入れる
+				GameController gc = gameController.GetComponent<GameController>();
+				enemyHp = enemyHp - gc.attackPower;	//攻撃力をHPから引く
 				if(enemyHp <= 0){
 					enemyHp = 0;
 				}
