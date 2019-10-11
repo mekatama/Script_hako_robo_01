@@ -32,7 +32,7 @@ public class Player_Shot : MonoBehaviour{
 			//SEをその場で鳴らす
 //			AudioSource.PlayClipAtPoint( audioClipShot, transform.position);	//SE再生(Destroy対策用)
 			//弾を生成する位置を指定
-			Vector3 vecBulletPos	= bulletStartPosition.position;
+			Vector3 vecBulletPos = bulletStartPosition.position;
 			//弾を生成
 			Instantiate( bulletObject, vecBulletPos, transform.rotation);
 			timeElapsed = 0.0f;

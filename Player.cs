@@ -9,6 +9,7 @@ public class Player : MonoBehaviour{
 	public bool isLeft;			//left flag
 	private bool isOnceRight;	//一回だけflag
 	private bool isOnceLeft;	//一回だけflag
+	private bool isOtherLine;	//別ラインに移動したかどうかflag
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerオブジェクトを探す
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour{
 		isLeft = false;		//初期化
 		isOnceRight = false;//初期化
 		isOnceLeft = false;	//初期化
+		isOtherLine = false;//初期化
 	}
 
 	void Update(){
@@ -23,6 +25,17 @@ public class Player : MonoBehaviour{
 		Transform myTransform = this.transform;
 		// ワールド座標を基準に、回転を取得
 		Vector3 worldAngle = myTransform.eulerAngles;
+
+		//ライン上移動
+		if(Input.GetKey("up") && isOtherLine == false){
+			this.transform.position += new Vector3(0, 0, 4);	//z移動
+			isOtherLine = true;
+		}
+		//ライン下移動
+		if(Input.GetKey("down") && isOtherLine == true){
+			this.transform.position += new Vector3(0, 0, -4);	//z移動
+			isOtherLine = false;
+		}
 
 		//右移動
 		if(Input.GetKey("right") && isLeft == false){
@@ -61,10 +74,8 @@ public class Player : MonoBehaviour{
 	}
 
 	void noShot(){
-		Debug.Log("noshot");
 		//gcって仮の変数にGameControllerのコンポーネントを入れる
 		GameController gc = gameController.GetComponent<GameController>();
 		gc.isShot = false;		//shot不可にする
 	}
-
 }
