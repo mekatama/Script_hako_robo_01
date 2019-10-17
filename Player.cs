@@ -10,6 +10,8 @@ public class Player : MonoBehaviour{
 	private bool isOnceRight;	//一回だけflag
 	private bool isOnceLeft;	//一回だけflag
 	private bool isOtherLine;	//別ラインに移動したかどうかflag
+	public int playerHp;		//playerのHP
+	private bool isDeth;		//死亡flag
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerオブジェクトを探す
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour{
 		isOnceRight = false;//初期化
 		isOnceLeft = false;	//初期化
 		isOtherLine = false;//初期化
+		isDeth = false;		//初期化
 	}
 
 	void Update(){
@@ -77,5 +80,26 @@ public class Player : MonoBehaviour{
 		//gcって仮の変数にGameControllerのコンポーネントを入れる
 		GameController gc = gameController.GetComponent<GameController>();
 		gc.isShot = false;		//shot不可にする
+	}
+
+	//他のオブジェクトとの当たり判定
+	void OnTriggerEnter( Collider other) {
+		if(other.tag == "Enemy"){
+			//ダメージ処理
+			if(playerHp > 0){
+				playerHp = playerHp - 1;	//HPから1引く
+				Debug.Log("PlayerHP:" + playerHp);
+				if(playerHp <= 0){
+					playerHp = 0;
+				}
+			}
+			//死亡判定
+			if(playerHp == 0){
+				if(isDeth == false){
+					Destroy(gameObject);			//このGameObjectを削除
+					isDeth = true;
+				}
+			}
+		}
 	}
 }
