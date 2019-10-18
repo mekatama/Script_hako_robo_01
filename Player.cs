@@ -89,6 +89,7 @@ public class Player : MonoBehaviour{
 			if(playerHp > 0){
 				playerHp = playerHp - 1;	//HPから1引く
 				Debug.Log("PlayerHP:" + playerHp);
+				Destroy(other.gameObject);	//接触したenemyを削除
 				if(playerHp <= 0){
 					playerHp = 0;
 				}
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour{
 			//死亡判定
 			if(playerHp == 0){
 				if(isDeth == false){
-					Destroy(gameObject);			//このGameObjectを削除
+					Destroy(gameObject);	//このGameObjectを削除
 					isDeth = true;
 				}
 			}
