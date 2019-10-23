@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameController : MonoBehaviour{
 	private float timeElapsed = 0.0f;	//noShot間隔カウント用
 	public float timeOut;				//noShot間隔の時間
-	public bool isShot;					//shotflag
+	public bool isShot;					//shot flag
 	public int totalScore;				//score
 	public int attackPower;				//攻撃力
+	public bool isGameOver;				//GameOver flag
 
 	//ゲームステート(※随時追加)
 	enum State{
@@ -42,13 +43,17 @@ public class GameController : MonoBehaviour{
 		switch(state){
 			case State.GameStart:
 				Debug.Log("game start");
-				Play();		//ステート移動		
+				Play();			//ステート移動
 				break;
 			case State.Play:
 				Debug.Log("play");
 				//GameOver判定予定
+				if(isGameOver){
+					GameOver();	//ステート移動
+				}
 				break;
 			case State.GameOver:
+				Debug.Log("GameOver");
 				break;
 		}
 	}
