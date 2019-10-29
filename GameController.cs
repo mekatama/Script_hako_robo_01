@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour{
 	private float timeElapsed = 0.0f;	//noShot間隔カウント用
@@ -67,5 +68,10 @@ public class GameController : MonoBehaviour{
 	void GameOver(){
 		//HighScore判定予定
 		state = State.GameOver;
+	}
+
+	//タイトルに戻る用の制御関数
+	public void ButtonClicked_Return(){
+		SceneManager.LoadScene("title");	//シーンのロード
 	}
 }
