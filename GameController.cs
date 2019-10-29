@@ -67,6 +67,9 @@ public class GameController : MonoBehaviour{
 	}
 	void GameOver(){
 		//HighScore判定予定
+	
+		//とりあえずタイトル画面に移動
+		SceneManager.LoadScene("title");	//シーンのロード
 		state = State.GameOver;
 	}
 
