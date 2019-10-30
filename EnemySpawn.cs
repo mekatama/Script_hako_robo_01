@@ -27,22 +27,32 @@ public class EnemySpawn : MonoBehaviour{
 
 	public void EnemyGo(){
 		enemyType = 0;		//仮の値
-		int spawnPos = Random.Range(0,2);		//ランダムで出現サイドを決める
+		int spawnPos = Random.Range(0,4);		//ランダムで出現サイドを決める
 		//出現位置
 		switch(spawnPos){
-			case 0:
+			case 0:				//line手前右
 				x_pos = 4.0f;
 				y_pos = 2.0f;
 				z_pos = -2.0f;
 				transform.rotation = Quaternion.Euler(0,180.0f,0);	//spawn pointを回転
-//				Debug.Log("右");
 				break;
-			case 1:
+			case 1:				//line手前左
 				x_pos = -4.0f;
 				y_pos = 2.0f;
 				z_pos = -2.0f;
 				transform.rotation = Quaternion.Euler(0,0.0f,0);	//spawn pointを回転
-//				Debug.Log("左");
+				break;
+			case 2:				//line奥右
+				x_pos = 4.0f;
+				y_pos = 2.0f;
+				z_pos = 2.0f;
+				transform.rotation = Quaternion.Euler(0,180.0f,0);	//spawn pointを回転
+				break;
+			case 3:				//line奥左
+				x_pos = -4.0f;
+				y_pos = 2.0f;
+				z_pos = 2.0f;
+				transform.rotation = Quaternion.Euler(0,0.0f,0);	//spawn pointを回転
 				break;
 		}
 
