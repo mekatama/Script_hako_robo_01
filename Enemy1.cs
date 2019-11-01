@@ -7,10 +7,12 @@ public class Enemy1 : MonoBehaviour{
 	public int enemyHp;		//EnemyのHP
 	public int enemyScore;	//enemyの点数
 	private bool isDeth;	//死亡flag
+	public bool isWallHit;	//wall hit flag
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
 		isDeth = false;		//初期化
+		isWallHit = false;	//初期化
 	}
 
 	//他のオブジェクトとの当たり判定
@@ -35,6 +37,10 @@ public class Enemy1 : MonoBehaviour{
 					isDeth = true;
 				}
 			}
+		}
+		if(other.tag == "Wall"){
+			isWallHit = true;
+			Debug.Log("wall hit");
 		}
 	}
 }
