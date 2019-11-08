@@ -9,7 +9,10 @@ public class GameController : MonoBehaviour{
 	public bool isShot;					//shot flag
 	public int totalScore;				//score
 	public int attackPower;				//攻撃力
+	public int enemySpawn;				//enemyの現在の出現数
+	public int enemySpawnMax;			//enemyのMAX出現数
 	public bool isGameOver;				//GameOver flag
+	public bool isEnemySpawn;			//enemy spawn flag
 
 	//ゲームステート(※随時追加)
 	enum State{
@@ -20,12 +23,13 @@ public class GameController : MonoBehaviour{
 	State state;
 
 	void Start(){
-		isShot = true;	//初期化
-		GameStart();	//初期ステート		
+		isShot = true;		//初期化
+		isEnemySpawn = true;//初期化
+		GameStart();		//初期ステート		
 	}
 
 	void Update(){
-//		Debug.Log("score:" + totalScore);
+		Debug.Log("spawn : " + enemySpawn);
 		//isShotの判定 playが方向転換時に判定して発射を制御
 		if(isShot == false){
 			timeOut = 0.5f;
@@ -33,9 +37,16 @@ public class GameController : MonoBehaviour{
 			timeElapsed += Time.deltaTime;
 			if(timeElapsed >= timeOut) {
 				isShot = true;		//shot許可
-//				Debug.Log("shot : " + isShot);
 				timeElapsed = 0.0f;
 			}
+		}
+
+		//enemyの出現制御
+		if(enemySpawn > enemySpawnMax){
+			Debug.Log("spawn Max");
+			isEnemySpawn = false;	//enemy出現停止
+		}else{
+			isEnemySpawn = true;	//enemy出現許可
 		}
 	}
 
@@ -43,11 +54,11 @@ public class GameController : MonoBehaviour{
 		//ステートの制御
 		switch(state){
 			case State.GameStart:
-				Debug.Log("game start");
+//				Debug.Log("game start");
 				Play();			//ステート移動
 				break;
 			case State.Play:
-				Debug.Log("play");
+//				Debug.Log("play");
 				//GameOver判定予定
 				if(isGameOver){
 					GameOver();	//ステート移動
@@ -69,7 +80,7 @@ public class GameController : MonoBehaviour{
 		//HighScore判定予定
 	
 		//とりあえずタイトル画面に移動
-		SceneManager.LoadScene("title");	//シーンのロード
+//		SceneManager.LoadScene("title");	//シーンのロード
 		state = State.GameOver;
 	}
 
