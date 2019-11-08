@@ -35,6 +35,7 @@ public class Enemy1 : MonoBehaviour{
 					//gcって仮の変数にGameControllerのコンポーネントを入れる
 					GameController gc = gameController.GetComponent<GameController>();
 					gc.totalScore += enemyScore;	//スコア加算
+					gc.enemySpawn --;				//現在のenemy数を減らす
 					Destroy(gameObject);			//このGameObjectを削除
 					isDeth = true;
 				}
