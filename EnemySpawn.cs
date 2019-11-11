@@ -31,7 +31,13 @@ public class EnemySpawn : MonoBehaviour{
 		//gcって仮の変数にGameControllerのコンポーネントを入れる
 		GameController gc = gameController.GetComponent<GameController>();
 		if(gc.isEnemySpawn){
-			enemyType = 0;		//仮の値
+			//enemyTypeをenemyDestroyで分岐(仮の分岐条件)
+			if(gc.enemyDestroy > 2){
+				enemyType = 1;		//仮の値
+			}else{
+				enemyType = 0;		//仮の値
+			}
+
 			int spawnPos = Random.Range(0,4);		//ランダムで出現サイドを決める
 			//出現位置
 			switch(spawnPos){
