@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour{
 	public int enemySpawnMax;			//enemyのMAX出現数
 	public bool isGameOver;				//GameOver flag
 	public bool isEnemySpawn;			//enemy spawn flag
+	public int enemyDestroy;			//enemy破壊数
 
 	//ゲームステート(※随時追加)
 	enum State{
