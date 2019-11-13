@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour{
 	public bool isShot;					//shot flag
 	public int totalScore;				//score
 	public int attackPower;				//攻撃力
+	public float rapidFirePower;			//連射力
 	public int enemySpawn;				//enemyの現在の出現数
 	public int enemySpawnMax;			//enemyのMAX出現数
 	public bool isGameOver;				//GameOver flag
@@ -30,7 +31,7 @@ public class GameController : MonoBehaviour{
 	}
 
 	void Update(){
-		Debug.Log("spawn : " + enemySpawn);
+		Debug.Log("rapidFirePower : " + rapidFirePower);
 		//isShotの判定 playが方向転換時に判定して発射を制御
 		if(isShot == false){
 			timeOut = 0.5f;
