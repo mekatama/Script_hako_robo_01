@@ -42,6 +42,17 @@ public class Enemy1 : MonoBehaviour{
 				}
 			}
 		}
+		if(other.tag == "Bom"){
+			if(isDeth == false){
+				//gcって仮の変数にGameControllerのコンポーネントを入れる
+				GameController gc = gameController.GetComponent<GameController>();
+				gc.totalScore += enemyScore;	//スコア加算
+				gc.enemySpawn --;				//現在のenemy数を減らす
+				gc.enemyDestroy ++;				//enemy破壊数加算
+				Destroy(gameObject);			//このGameObjectを削除
+				isDeth = true;
+			}
+		}
 		if(other.tag == "Wall_R"){
 			isWallHit_R = true;
 			isWallHit_L = false;
