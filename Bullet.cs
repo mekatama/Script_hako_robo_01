@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour{
 
 	//他のオブジェクトとの当たり判定
 	void OnTriggerEnter( Collider other) {
-		if(other.tag == "Wall"){
+		if(other.tag == "Wall_R" || other.tag == "Wall_L"){
 			Destroy(gameObject);	//このGameObjectを［Hierrchy］ビューから削除する
 		}
 		if(other.tag == "Enemy"){
