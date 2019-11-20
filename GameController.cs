@@ -9,12 +9,14 @@ public class GameController : MonoBehaviour{
 	public bool isShot;					//shot flag
 	public int totalScore;				//score
 	public int attackPower;				//攻撃力
-	public float rapidFirePower;			//連射力
+	public float rapidFirePower;		//連射力
 	public int enemySpawn;				//enemyの現在の出現数
 	public int enemySpawnMax;			//enemyのMAX出現数
 	public bool isGameOver;				//GameOver flag
 	public bool isEnemySpawn;			//enemy spawn flag
 	public int enemyDestroy;			//enemy破壊数
+	public bool isBom;					//Bom発射 flag
+	public int bomNum;					//Bom数
 
 	//ゲームステート(※随時追加)
 	enum State{
@@ -27,7 +29,8 @@ public class GameController : MonoBehaviour{
 	void Start(){
 		isShot = true;		//初期化
 		isEnemySpawn = true;//初期化
-		GameStart();		//初期ステート		
+		bomNum = 1;			//初期値
+		GameStart();		//初期ステート
 	}
 
 	void Update(){
@@ -49,6 +52,13 @@ public class GameController : MonoBehaviour{
 			isEnemySpawn = false;	//enemy出現停止
 		}else{
 			isEnemySpawn = true;	//enemy出現許可
+		}
+
+		//BOM残弾で制御
+		if(bomNum > 0){
+			isBom = true;
+		}else{
+			isBom = false;
 		}
 	}
 
