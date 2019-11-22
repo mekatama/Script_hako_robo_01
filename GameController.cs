@@ -34,7 +34,6 @@ public class GameController : MonoBehaviour{
 	}
 
 	void Update(){
-		Debug.Log("rapidFirePower : " + rapidFirePower);
 		//isShotの判定 playが方向転換時に判定して発射を制御
 		if(isShot == false){
 			timeOut = 0.5f;
@@ -48,7 +47,6 @@ public class GameController : MonoBehaviour{
 
 		//enemyの出現制御
 		if(enemySpawn > enemySpawnMax){
-			Debug.Log("spawn Max");
 			isEnemySpawn = false;	//enemy出現停止
 		}else{
 			isEnemySpawn = true;	//enemy出現許可
@@ -77,7 +75,7 @@ public class GameController : MonoBehaviour{
 				}
 				break;
 			case State.GameOver:
-				Debug.Log("GameOver");
+//				Debug.Log("GameOver");
 				break;
 		}
 	}

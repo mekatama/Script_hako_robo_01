@@ -25,8 +25,8 @@ public class Player : MonoBehaviour{
 			}
 			//死亡判定
 			if(playerHp == 0){
-		//gcって仮の変数にGameControllerのコンポーネントを入れる
-		GameController gc = gameController.GetComponent<GameController>();
+				//gcって仮の変数にGameControllerのコンポーネントを入れる
+				GameController gc = gameController.GetComponent<GameController>();
 				if(isDeth == false){
 					gc.isGameOver = true;
 					isDeth = true;

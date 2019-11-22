@@ -15,7 +15,6 @@ public class Item_PowerUp : MonoBehaviour{
 		//gcって仮の変数にGameControllerのコンポーネントを入れる
 		GameController gc = gameController.GetComponent<GameController>();
 		if(other.tag == "Player"){
-			Debug.Log("ItemGet");
 			gc.rapidFirePower -= rapidNum;	//連射アップ
 			Destroy(gameObject);			//Item_P削除
 		}
