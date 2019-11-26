@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy1 : MonoBehaviour{
 	GameObject gameController;			//検索したオブジェクト入れる用
 	public GameObject item_Bom;			//Enemyから出現させるアイテム
+	public GameObject scoreTxt;			//Enemyから出現させるscore txt
 	public int enemyHp;		//EnemyのHP
 	public int enemyScore;	//enemyの点数
 	private bool isDeth;	//死亡flag
@@ -41,6 +42,10 @@ public class Enemy1 : MonoBehaviour{
 					//BOM出現
 					Instantiate (	item_Bom, 
 									new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
+									transform.rotation);
+					//scoreを生成する
+					Instantiate(	scoreTxt,	
+									transform.position,
 									transform.rotation);
 					Destroy(gameObject);			//このGameObjectを削除
 					isDeth = true;
