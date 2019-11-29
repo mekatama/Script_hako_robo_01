@@ -6,6 +6,7 @@ public class Enemy1 : MonoBehaviour{
 	GameObject gameController;			//検索したオブジェクト入れる用
 	public GameObject item_Bom;			//Enemyから出現させるアイテム
 	public GameObject scoreTxt;			//Enemyから出現させるscore txt
+	public GameObject score;
 	public int enemyHp;		//EnemyのHP
 	public int enemyScore;	//enemyの点数
 	private bool isDeth;	//死亡flag
@@ -17,6 +18,7 @@ public class Enemy1 : MonoBehaviour{
 		isDeth = false;		//初期化
 		isWallHit_R = false;//初期化
 		isWallHit_L = false;//初期化
+		score = null;		//初期化
 	}
 
 	//他のオブジェクトとの当たり判定
@@ -44,9 +46,15 @@ public class Enemy1 : MonoBehaviour{
 									new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
 									transform.rotation);
 					//scoreを生成する
-					Instantiate(	scoreTxt,	
-									transform.position,
-									transform.rotation);
+					score = (GameObject)Instantiate(
+						scoreTxt,						//■仮で0を入れている。0～4を想定
+						transform.position,
+						transform.rotation
+					);
+					//生成したscoreに得点を渡す
+					score.GetComponent<TextMesh>().text = enemyScore.ToString("0000");
+//					Debug.Log("name : " + score.GetComponent<TextMesh>().text);
+
 					Destroy(gameObject);			//このGameObjectを削除
 					isDeth = true;
 				}
