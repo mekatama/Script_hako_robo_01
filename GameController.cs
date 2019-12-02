@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour{
 	public int enemyDestroy;			//enemy破壊数
 	public bool isBom;					//Bom発射 flag
 	public int bomNum;					//Bom数
+	public int bomRate;					//Bom得点倍率
 
 	//ゲームステート(※随時追加)
 	enum State{
