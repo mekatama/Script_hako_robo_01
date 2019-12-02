@@ -47,7 +47,7 @@ public class Enemy1 : MonoBehaviour{
 									transform.rotation);
 					//scoreを生成する
 					score = (GameObject)Instantiate(
-						scoreTxt,						//■仮で0を入れている。0～4を想定
+						scoreTxt,
 						transform.position,
 						transform.rotation
 					);
@@ -64,9 +64,19 @@ public class Enemy1 : MonoBehaviour{
 			if(isDeth == false){
 				//gcって仮の変数にGameControllerのコンポーネントを入れる
 				GameController gc = gameController.GetComponent<GameController>();
-				gc.totalScore += enemyScore;	//スコア加算
-				gc.enemySpawn --;				//現在のenemy数を減らす
-				gc.enemyDestroy ++;				//enemy破壊数加算
+				gc.totalScore += enemyScore * gc.bomRate;	//スコア加算(bomRateかける)
+				gc.enemySpawn --;							//現在のenemy数を減らす
+				gc.enemyDestroy ++;							//enemy破壊数加算
+
+				//scoreを生成する
+				score = (GameObject)Instantiate(
+					scoreTxt,
+					transform.position,
+					transform.rotation
+				);
+				//生成したscoreに得点を渡す
+				score.GetComponent<TextMesh>().text = enemyScore.ToString("0000") + "×" + gc.bomRate;
+
 				Destroy(gameObject);			//このGameObjectを削除
 				isDeth = true;
 			}
