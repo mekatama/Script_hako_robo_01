@@ -29,4 +29,10 @@ public class TitleController : MonoBehaviour {
 		Application.Quit();
 		Debug.Log("exit");	
 	}
+
+	//Debug用ハイスコアリセットボタン
+	public void ButtonClicked_Reset(){
+		PlayerPrefs.DeleteAll();
+		Debug.Log("全データ削除しますた");	
+	}
 }
