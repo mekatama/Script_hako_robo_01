@@ -12,6 +12,7 @@ public class Enemy1 : MonoBehaviour{
 	private bool isDeth;	//死亡flag
 	public bool isWallHit_R;//wall hit flag
 	public bool isWallHit_L;//wall hit flag
+	public bool isHitStop;	//hit stop flag
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
@@ -19,6 +20,7 @@ public class Enemy1 : MonoBehaviour{
 		isWallHit_R = false;//初期化
 		isWallHit_L = false;//初期化
 		score = null;		//初期化
+		isHitStop = false;	//初期化
 	}
 
 	//他のオブジェクトとの当たり判定
@@ -32,6 +34,7 @@ public class Enemy1 : MonoBehaviour{
 				if(enemyHp <= 0){
 					enemyHp = 0;
 				}
+				isHitStop = true;
 			}
 			//死亡判定
 			if(enemyHp == 0){
