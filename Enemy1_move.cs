@@ -7,6 +7,8 @@ public class Enemy1_move : MonoBehaviour{
 	private Enemy1 childScript;	//Enemy1オブジェクトを入れる用
 	private bool isOnceRot_R;	//R回転の一回だけ処理
 	private bool isOnceRot_L;	//L回転の一回だけ処理
+	public float hitStoptime = 0.2f;	//HitStop間隔
+	private float timeElapsed = 0.0f;	//HitStopカウント用
 
 	void Start(){
 		//下の階層のオブジェクト(Enemy1)にアタッチしているスクリプトを参照
@@ -32,7 +34,17 @@ public class Enemy1_move : MonoBehaviour{
 				isOnceRot_R = false;
 			}
 		}
-		//移動
+
+		if(childScript.isHitStop == false){
+			//移動
 			transform.position += transform.right * speed * Time.deltaTime;
+		}else{
+			//HitStop中はtransform.position処理に行かない
+			timeElapsed += Time.deltaTime;
+			if(timeElapsed >= hitStoptime) {
+				timeElapsed = 0.0f;
+				childScript.isHitStop = false;
+			}
+		}
 	}
 }
