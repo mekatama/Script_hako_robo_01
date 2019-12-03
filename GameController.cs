@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour{
 	public float timeOut;				//noShot間隔の時間
 	public bool isShot;					//shot flag
 	public int totalScore;				//score
+	public int highScore = 0;			//high score
 	public int attackPower;				//攻撃力
 	public float rapidFirePower;		//連射力
 	public int enemySpawn;				//enemyの現在の出現数
@@ -31,6 +32,9 @@ public class GameController : MonoBehaviour{
 		isShot = true;		//初期化
 		isEnemySpawn = true;//初期化
 		bomNum = 1;			//初期値
+		//Losd HighScoreがなかったら０を入れて初期化
+		highScore = PlayerPrefs.GetInt("HighScore", 0); 
+
 		GameStart();		//初期ステート
 	}
 
@@ -88,10 +92,17 @@ public class GameController : MonoBehaviour{
 		state = State.Play;
 	}
 	void GameOver(){
-		//HighScore判定予定
+		//HighScore判定
+		if(totalScore > highScore){
+			highScore = totalScore;
+//			isNewRecord = 1;								//newrecord flag on
+			PlayerPrefs.SetInt("HighScore", highScore);	//save
+//			PlayerPrefs.SetInt("NewRecord", isNewRecord);	//save
+			Debug.Log("HighScore=" + highScore);
+		}
 	
 		//とりあえずタイトル画面に移動
-//		SceneManager.LoadScene("title");	//シーンのロード
+		SceneManager.LoadScene("title");	//シーンのロード
 		state = State.GameOver;
 	}
 
