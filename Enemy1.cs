@@ -13,6 +13,8 @@ public class Enemy1 : MonoBehaviour{
 	public bool isWallHit_R;//wall hit flag
 	public bool isWallHit_L;//wall hit flag
 	public bool isHitStop;	//hit stop flag
+	public AudioClip audioClipDamage;	//Damage SE
+	public AudioClip audioClipDead;		//Dead SE
 
 	void Start(){
 		gameController = GameObject.FindWithTag ("GameController");	//GameControllerを探す
@@ -30,6 +32,8 @@ public class Enemy1 : MonoBehaviour{
 			if(enemyHp > 0){
 				//gcって仮の変数にGameControllerのコンポーネントを入れる
 				GameController gc = gameController.GetComponent<GameController>();
+				//SEをその場で鳴らす
+				AudioSource.PlayClipAtPoint( audioClipDamage, transform.position);	//SE再生
 				enemyHp = enemyHp - gc.attackPower;	//攻撃力をHPから引く
 				if(enemyHp <= 0){
 					enemyHp = 0;
@@ -44,6 +48,8 @@ public class Enemy1 : MonoBehaviour{
 					gc.totalScore += enemyScore;	//スコア加算
 					gc.enemySpawn --;				//現在のenemy数を減らす
 					gc.enemyDestroy ++;				//enemy破壊数加算
+					//SEをその場で鳴らす
+					AudioSource.PlayClipAtPoint( audioClipDead, transform.position);	//SE再生
 					//BOM出現
 					Instantiate (	item_Bom, 
 									new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
