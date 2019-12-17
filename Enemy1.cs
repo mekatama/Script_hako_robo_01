@@ -7,6 +7,7 @@ public class Enemy1 : MonoBehaviour{
 	public GameObject item_Bom;			//Enemyから出現させるアイテム
 	public GameObject scoreTxt;			//Enemyから出現させるscore txt
 	public GameObject score;
+	public GameObject particle;			//爆発Particle
 	public int enemyHp;		//EnemyのHP
 	public int enemyScore;	//enemyの点数
 	private bool isDeth;	//死亡flag
@@ -48,6 +49,8 @@ public class Enemy1 : MonoBehaviour{
 					gc.totalScore += enemyScore;	//スコア加算
 					gc.enemySpawn --;				//現在のenemy数を減らす
 					gc.enemyDestroy ++;				//enemy破壊数加算
+					//爆発effect
+					Instantiate (particle, transform.position, transform.rotation);
 					//SEをその場で鳴らす
 					AudioSource.PlayClipAtPoint( audioClipDead, transform.position);	//SE再生
 					//BOM出現
