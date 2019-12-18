@@ -69,18 +69,15 @@ public class GameController : MonoBehaviour{
 		//ステートの制御
 		switch(state){
 			case State.GameStart:
-//				Debug.Log("game start");
 				Play();			//ステート移動
 				break;
 			case State.Play:
-//				Debug.Log("play");
 				//GameOver判定予定
 				if(isGameOver){
 					GameOver();	//ステート移動
 				}
 				break;
 			case State.GameOver:
-//				Debug.Log("GameOver");
 				break;
 		}
 	}
@@ -101,8 +98,8 @@ public class GameController : MonoBehaviour{
 			Debug.Log("HighScore=" + highScore);
 		}
 	
-		//とりあえずタイトル画面に移動
-		SceneManager.LoadScene("title");	//シーンのロード
+		//gemeover画面に移動
+		SceneManager.LoadScene("gameover");	//シーンのロード
 		state = State.GameOver;
 	}
 
