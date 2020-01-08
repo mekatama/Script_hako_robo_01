@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour{
 	public float timeOut;				//noShot間隔の時間
 	public bool isShot;					//shot flag
 	public int totalScore;				//score
+	public int finishScore;				//gemeover時のscore
 	public int highScore = 0;			//high score
 	public int attackPower;				//攻撃力
 	public float rapidFirePower;		//連射力
@@ -32,8 +33,10 @@ public class GameController : MonoBehaviour{
 		isShot = true;		//初期化
 		isEnemySpawn = true;//初期化
 		bomNum = 1;			//初期値
-		//Losd HighScoreがなかったら０を入れて初期化
+		//Losdする HighScoreがなかったら０を入れて初期化
 		highScore = PlayerPrefs.GetInt("HighScore", 0); 
+		//Losdする FinishScoreがなかったら０を入れて初期化
+//		finishScore = PlayerPrefs.GetInt("FinishScore", 0); 
 
 		GameStart();		//初期ステート
 	}
@@ -89,11 +92,14 @@ public class GameController : MonoBehaviour{
 		state = State.Play;
 	}
 	void GameOver(){
+		//gemeover時のscoreを保存
+		finishScore = totalScore;
+		PlayerPrefs.SetInt("FinishScore", finishScore);		//save
 		//HighScore判定
 		if(totalScore > highScore){
 			highScore = totalScore;
 //			isNewRecord = 1;								//newrecord flag on
-			PlayerPrefs.SetInt("HighScore", highScore);	//save
+			PlayerPrefs.SetInt("HighScore", highScore);		//save
 //			PlayerPrefs.SetInt("NewRecord", isNewRecord);	//save
 			Debug.Log("HighScore=" + highScore);
 		}
