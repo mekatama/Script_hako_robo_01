@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour{
 	public int totalScore;				//score
 	public int finishScore;				//gemeover時のscore
 	public int highScore = 0;			//high score
+	public int isNewRecord;				//high score更新制御用intで代用
 	public int attackPower;				//攻撃力
 	public float rapidFirePower;		//連射力
 	public int enemySpawn;				//enemyの現在の出現数
@@ -37,6 +38,8 @@ public class GameController : MonoBehaviour{
 		highScore = PlayerPrefs.GetInt("HighScore", 0); 
 		//Losdする FinishScoreがなかったら０を入れて初期化
 //		finishScore = PlayerPrefs.GetInt("FinishScore", 0); 
+		//NewRecord flag用 0 = false
+		PlayerPrefs.SetInt("NewRecord", 0);
 
 		GameStart();		//初期ステート
 	}
@@ -98,9 +101,9 @@ public class GameController : MonoBehaviour{
 		//HighScore判定
 		if(totalScore > highScore){
 			highScore = totalScore;
-//			isNewRecord = 1;								//newrecord flag on
+			isNewRecord = 1;								//newrecord flag on
 			PlayerPrefs.SetInt("HighScore", highScore);		//save
-//			PlayerPrefs.SetInt("NewRecord", isNewRecord);	//save
+			PlayerPrefs.SetInt("NewRecord", isNewRecord);	//save
 			Debug.Log("HighScore=" + highScore);
 		}
 	
